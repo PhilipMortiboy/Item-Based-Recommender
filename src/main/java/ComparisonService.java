@@ -36,6 +36,10 @@ public class ComparisonService {
         }
     }
 
+    public void stringCompare(String a1, String a2) {
+
+    }
+
     public HashMap<String, Comparison> getComparisons() {
         return comparisons;
     }

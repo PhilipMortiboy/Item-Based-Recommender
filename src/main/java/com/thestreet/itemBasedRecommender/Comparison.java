@@ -1,3 +1,5 @@
+package com.thestreet.itemBasedRecommender;
+
 public class Comparison{
     private double scoreA = 0;
     private double scoreB = 0;

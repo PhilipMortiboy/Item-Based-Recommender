@@ -1,24 +1,27 @@
+package com.thestreet.itemBasedRecommender;
+
 import org.apache.commons.math3.ml.distance.EuclideanDistance;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.impl.similarity.AbstractItemSimilarity;
+import org.apache.mahout.cf.taste.model.DataModel;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
 
-import static java.lang.System.in;
-
 public class ItemSimilarity extends AbstractItemSimilarity {
     private Database database;
 
-    protected ItemSimilarity(ItemModel dataModel, Database database) {
+    public ItemSimilarity(DataModel dataModel, Database database) {
         super(dataModel);
         this.database = database;
     }
 
-
     public double itemSimilarity(long l, long l1) throws TasteException {
          ItemModel item1 = database.getItem(l);
          ItemModel item2 = database.getItem(l1);
+
+         if(item1 == null || item2 == null)
+             return 0;
 
         ComparisonService comparisonService = new ComparisonService();
 
@@ -31,17 +34,25 @@ public class ItemSimilarity extends AbstractItemSimilarity {
             try {
                 // String comparison
                 if (item1Fields[i].getType() == String[].class) {
-                    String[] value1 = new String[]{}, value2 = new String[]{};
-                    item1Fields[i].get(value1);
-                    item2Fields[i].get(value2);
+                    item1Fields[i].setAccessible(true);
+                    item2Fields[i].setAccessible(true);
+                    Object fieldVal1 = item1Fields[i].get(item1);
+                    Object fieldVal2 = item2Fields[i].get(item2);
+
+                    String[] value1 = ItemModelHelper.unpack(fieldVal1, String.class);
+                    String[] value2 = ItemModelHelper.unpack(fieldVal2, String.class);
 
                     comparisonService.stringCompare(Arrays.asList(value1), Arrays.asList(value2));
                 }
                 // Comparable comparison
-                if(item1Fields[i].getType() == Comparable[].class) {
-                    Comparable[] value1 = new Comparable[]{}, value2 = new Comparable[]{};
-                    item1Fields[i].get(value1);
-                    item2Fields[i].get(value2);
+                else if(item1Fields[i].getType() == Comparable[].class) {
+                    item1Fields[i].setAccessible(true);
+                    item2Fields[i].setAccessible(true);
+                    Object fieldVal1 = item1Fields[i].get(item1);
+                    Object fieldVal2 = item2Fields[i].get(item2);
+
+                    Comparable[] value1 = ItemModelHelper.unpack(fieldVal1, Comparable.class);
+                    Comparable[] value2 = ItemModelHelper.unpack(fieldVal2, Comparable.class);
 
                     comparisonService.compare(Arrays.asList(value1), Arrays.asList(value2));
                 }

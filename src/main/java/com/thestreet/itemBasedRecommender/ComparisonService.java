@@ -1,3 +1,5 @@
+package com.thestreet.itemBasedRecommender;
+
 import java.util.Collection;
 import java.util.HashMap;
 

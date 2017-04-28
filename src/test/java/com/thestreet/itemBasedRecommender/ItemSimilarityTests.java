@@ -3,15 +3,12 @@ package com.thestreet.itemBasedRecommender;
 import com.thestreet.itemBasedRecommender.builders.GenericDataModelBuilder;
 import com.thestreet.itemBasedRecommender.builders.SimpleItemBuilder;
 import com.thestreet.itemBasedRecommender.builders.models.SimpleComparable;
-import com.thestreet.itemBasedRecommender.builders.models.SimpleItem;
 import com.thestreet.itemBasedRecommender.builders.models.TestItemModel;
 import com.thestreet.itemBasedRecommender.mocks.MockDatabase;
-import org.apache.mahout.cf.taste.impl.model.GenericBooleanPrefDataModel;
-import org.apache.mahout.cf.taste.impl.model.GenericDataModel;
-import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class ItemSimilarityTests {
 

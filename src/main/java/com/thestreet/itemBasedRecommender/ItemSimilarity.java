@@ -1,5 +1,7 @@
 package com.thestreet.itemBasedRecommender;
 
+import com.thestreet.itemBasedRecommender.weighting.UnWeighted;
+import com.thestreet.itemBasedRecommender.weighting.Weighting;
 import org.apache.commons.math3.ml.distance.EuclideanDistance;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.impl.similarity.AbstractItemSimilarity;
@@ -10,10 +12,18 @@ import java.util.Arrays;
 
 public class ItemSimilarity extends AbstractItemSimilarity {
     private Database database;
+    private Weighting weighting;
 
     public ItemSimilarity(DataModel dataModel, Database database) {
         super(dataModel);
         this.database = database;
+        this.weighting = new UnWeighted();
+    }
+
+    public ItemSimilarity(DataModel dataModel, Database database, Weighting weighting) {
+        super(dataModel);
+        this.database = database;
+        this.weighting = weighting;
     }
 
     public double itemSimilarity(long l, long l1) throws TasteException {
@@ -42,7 +52,9 @@ public class ItemSimilarity extends AbstractItemSimilarity {
                     String[] value1 = ItemModelHelper.unpack(fieldVal1, String.class);
                     String[] value2 = ItemModelHelper.unpack(fieldVal2, String.class);
 
-                    comparisonService.stringCompare(Arrays.asList(value1), Arrays.asList(value2));
+                    double weighting = this.weighting.getWeighting(item1Fields[i].getName());
+
+                    comparisonService.stringCompare(Arrays.asList(value1), Arrays.asList(value2), weighting);
                 }
                 // Comparable comparison
                 else if(item1Fields[i].getType() == Comparable[].class) {
@@ -54,7 +66,9 @@ public class ItemSimilarity extends AbstractItemSimilarity {
                     Comparable[] value1 = ItemModelHelper.unpack(fieldVal1, Comparable.class);
                     Comparable[] value2 = ItemModelHelper.unpack(fieldVal2, Comparable.class);
 
-                    comparisonService.compare(Arrays.asList(value1), Arrays.asList(value2));
+                    double weighting = this.weighting.getWeighting(item1Fields[i].getName());
+
+                    comparisonService.compare(Arrays.asList(value1), Arrays.asList(value2), weighting);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();

@@ -3,8 +3,8 @@ package com.thestreet.itemBasedRecommender;
 import java.lang.reflect.Array;
 
 @SuppressWarnings (value="unchecked")
-class ItemModelHelper {
-    static <T> T[] unpack(Object array, Class<T> clazz) {
+public class ItemModelHelper {
+    public static <T> T[] unpack(Object array, Class<T> clazz) {
         if(array == null)
             return newArray(clazz, 0);
 

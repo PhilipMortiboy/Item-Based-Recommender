@@ -1,5 +1,7 @@
 package com.thestreet.itemBasedRecommender;
 
+import com.thestreet.itemBasedRecommender.vectors.GenericVector;
+import com.thestreet.itemBasedRecommender.vectors.Vector;
 import com.thestreet.itemBasedRecommender.weighting.UnWeighted;
 import com.thestreet.itemBasedRecommender.weighting.Weighting;
 import org.apache.commons.math3.ml.distance.EuclideanDistance;
@@ -7,87 +9,44 @@ import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.impl.similarity.AbstractItemSimilarity;
 import org.apache.mahout.cf.taste.model.DataModel;
 
-import java.lang.reflect.Field;
-import java.util.Arrays;
-
-public class ItemSimilarity extends AbstractItemSimilarity {
-    private Database database;
+public class ItemSimilarity<TItemModel extends ItemModel> extends AbstractItemSimilarity {
+    private Database<TItemModel> database;
     private Weighting weighting;
+    private Vector vector;
 
-    public ItemSimilarity(DataModel dataModel, Database database) {
+    public ItemSimilarity(DataModel dataModel, Database<TItemModel> database) {
         super(dataModel);
         this.database = database;
         this.weighting = new UnWeighted();
+        this.vector = new GenericVector();
     }
 
-    public ItemSimilarity(DataModel dataModel, Database database, Weighting weighting) {
+
+    public ItemSimilarity(DataModel dataModel, Database<TItemModel> database, Vector vector) {
+        super(dataModel);
+        this.database = database;
+        this.weighting = new UnWeighted();
+        this.vector = vector;
+    }
+
+    public ItemSimilarity(DataModel dataModel, Database<TItemModel> database, Weighting weighting) {
         super(dataModel);
         this.database = database;
         this.weighting = weighting;
     }
 
     public double itemSimilarity(long l, long l1) throws TasteException {
-         ItemModel item1 = database.getItem(l);
-         ItemModel item2 = database.getItem(l1);
+         TItemModel item1 = database.getItem(l);
+         TItemModel item2 = database.getItem(l1);
 
          if(item1 == null || item2 == null)
              return 0;
 
-        ComparisonService comparisonService = new ComparisonService();
-
-        // Probably best not to do this with reflection
-        Field[] item1Fields = item1.getClass().getDeclaredFields();
-        Field[] item2Fields = item2.getClass().getDeclaredFields();
-
-        // This assumes item1 and item2 are the same type
-        for (int i = 0; i < item1Fields.length; i++) {
-            try {
-                // String comparison
-                if (item1Fields[i].getType() == String[].class) {
-                    item1Fields[i].setAccessible(true);
-                    item2Fields[i].setAccessible(true);
-                    Object fieldVal1 = item1Fields[i].get(item1);
-                    Object fieldVal2 = item2Fields[i].get(item2);
-
-                    String[] value1 = ItemModelHelper.unpack(fieldVal1, String.class);
-                    String[] value2 = ItemModelHelper.unpack(fieldVal2, String.class);
-
-                    double weighting = this.weighting.getWeighting(item1Fields[i].getName());
-
-                    comparisonService.stringCompare(Arrays.asList(value1), Arrays.asList(value2), weighting);
-                }
-                // Comparable comparison
-                else if(item1Fields[i].getType() == Comparable[].class) {
-                    item1Fields[i].setAccessible(true);
-                    item2Fields[i].setAccessible(true);
-                    Object fieldVal1 = item1Fields[i].get(item1);
-                    Object fieldVal2 = item2Fields[i].get(item2);
-
-                    Comparable[] value1 = ItemModelHelper.unpack(fieldVal1, Comparable.class);
-                    Comparable[] value2 = ItemModelHelper.unpack(fieldVal2, Comparable.class);
-
-                    double weighting = this.weighting.getWeighting(item1Fields[i].getName());
-
-                    comparisonService.compare(Arrays.asList(value1), Arrays.asList(value2), weighting);
-                }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-
-        // Build param arrays for euclidean distance calculation
-        int size = comparisonService.getComparisons().size();
-        double[] paramsA = new double[size];
-        double[] paramsB = new double[size];
-
-        Comparison[] conceptComparisons = comparisonService.getComparisons().values().toArray(new Comparison[size]);
-        for (int i = 0; i < conceptComparisons.length; i++) {
-            paramsA[i] = conceptComparisons[i].getScoreA();
-            paramsB[i] = conceptComparisons[i].getScoreB();
-        }
+        // Build a vector for these two articles
+        vector.build(item1, item2, weighting);
 
         // Calculate euclidean distance - https://en.wikipedia.org/wiki/Euclidean_distance
-        double distance = new EuclideanDistance().compute(paramsA, paramsB);
+        double distance = new EuclideanDistance().compute(vector.getA(), vector.getB());
         // Discard outliers
         if(distance == 0)
             return 0;

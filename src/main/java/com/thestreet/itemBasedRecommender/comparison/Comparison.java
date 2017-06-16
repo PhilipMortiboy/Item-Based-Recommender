@@ -1,4 +1,4 @@
-package com.thestreet.itemBasedRecommender;
+package com.thestreet.itemBasedRecommender.comparison;
 
 public class Comparison{
     private double scoreA = 0;
@@ -9,7 +9,7 @@ public class Comparison{
 
     }
 
-    Comparison(double weight) {
+    public Comparison(double weight) {
         this.weight = weight;
     }
 
@@ -21,14 +21,14 @@ public class Comparison{
         this.scoreB = scoreB;
     }
 
-    double getScoreA() {
+    public double getScoreA() {
         // Comparisons with a greater weight should be given more importance
         // As these scores will be used in a euclidean distance calculation, a smaller value is better
         // So divide each score by the weight
         return weight > 0 ? scoreA / weight : scoreA;
     }
 
-    double getScoreB() {
+    public double getScoreB() {
         return weight > 0 ? scoreB / weight : scoreB;
     }
 }

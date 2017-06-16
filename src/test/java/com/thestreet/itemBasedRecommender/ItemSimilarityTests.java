@@ -5,6 +5,7 @@ import com.thestreet.itemBasedRecommender.builders.SimpleItemBuilder;
 import com.thestreet.itemBasedRecommender.builders.models.SimpleComparable;
 import com.thestreet.itemBasedRecommender.builders.models.TestItemModel;
 import com.thestreet.itemBasedRecommender.mocks.MockDatabase;
+import com.thestreet.itemBasedRecommender.weighting.UnWeighted;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -36,7 +37,7 @@ public class ItemSimilarityTests {
                             .build()
             });
 
-            ItemSimilarity itemSimilarity = new ItemSimilarity(
+            ItemSimilarity itemSimilarity = new ItemSimilarity<TestItemModel>(
                     new GenericDataModelBuilder().build(),
                     db
             );

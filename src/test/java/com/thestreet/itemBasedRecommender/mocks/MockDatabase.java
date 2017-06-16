@@ -7,7 +7,7 @@ import com.thestreet.itemBasedRecommender.builders.models.TestItemModel;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MockDatabase implements Database {
+public class MockDatabase implements Database<TestItemModel> {
     private Map<Long, TestItemModel> collection = new HashMap<Long, TestItemModel>();
 
     public void addItems(TestItemModel[] items) {
@@ -19,7 +19,7 @@ public class MockDatabase implements Database {
         collection.put(item.getId(), item);
     }
 
-    public ItemModel getItem(long id) {
+    public TestItemModel getItem(long id) {
         return collection.get(id);
     }
 }

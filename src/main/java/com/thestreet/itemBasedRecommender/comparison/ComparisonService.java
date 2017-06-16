@@ -1,4 +1,7 @@
-package com.thestreet.itemBasedRecommender;
+package com.thestreet.itemBasedRecommender.comparison;
+
+import com.thestreet.itemBasedRecommender.Comparable;
+import com.thestreet.itemBasedRecommender.comparison.Comparison;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -6,15 +9,15 @@ import java.util.HashMap;
 public class ComparisonService {
     private HashMap<String, Comparison> comparisons;
 
-    ComparisonService(){
+    public ComparisonService(){
         this.comparisons = new HashMap<String, Comparison>();
     }
 
-    <T extends Comparable> void compare(Iterable<T> a1, Iterable<T> a2){
+    public <T extends Comparable> void compare(Iterable<T> a1, Iterable<T> a2){
         this.compare(a1, a2, 0);
     }
 
-    <T extends Comparable> void compare(Iterable<T> a1, Iterable<T> a2, double weight){
+    public <T extends Comparable> void compare(Iterable<T> a1, Iterable<T> a2, double weight){
         for(T item : a1){
             Comparison comparison = new Comparison(weight);
             comparison.setScoreA(item.getScore());
@@ -29,11 +32,11 @@ public class ComparisonService {
         }
     }
 
-    void stringCompare(Collection<String> a1, Collection<String> a2) {
+    public void stringCompare(Collection<String> a1, Collection<String> a2) {
         this.stringCompare(a1, a2, 0);
     }
 
-    void stringCompare(Collection<String> a1, Collection<String> a2, double weight) {
+    public void stringCompare(Collection<String> a1, Collection<String> a2, double weight) {
         for(String item : a1){
             Comparison comparison = new Comparison(weight);
             comparison.setScoreA(1);
@@ -48,11 +51,11 @@ public class ComparisonService {
         }
     }
 
-    void stringCompare(String a1, String a2) {
+    public void stringCompare(String a1, String a2) {
 
     }
 
-    HashMap<String, Comparison> getComparisons() {
+    public HashMap<String, Comparison> getComparisons() {
         return comparisons;
     }
 }

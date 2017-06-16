@@ -1,5 +1,5 @@
 package com.thestreet.itemBasedRecommender;
 
-public interface Database {
-    ItemModel getItem(long id);
+public interface Database<TItemModel extends ItemModel> {
+    TItemModel getItem(long id);
 }

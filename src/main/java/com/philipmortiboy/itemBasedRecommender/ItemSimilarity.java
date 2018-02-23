@@ -45,7 +45,7 @@ public class ItemSimilarity<TItemModel extends ItemModel> extends AbstractItemSi
         // Build a vector for these two articles
         vector.build(item1, item2, weighting);
 
-        // Calculate euclidean distance - https://en.wikipedia.org/wiki/Euclidean_distance
+        // Calculate euclidean distance
         double distance = new EuclideanDistance().compute(vector.getA(), vector.getB());
         // Discard outliers
         if(distance == 0)

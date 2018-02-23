@@ -1,6 +1,6 @@
-package com.thestreet.itemBasedRecommender.builders.models;
+package com.philipmortiboy.itemBasedRecommender.builders.models;
 
-import com.thestreet.itemBasedRecommender.Comparable;
+import com.philipmortiboy.itemBasedRecommender.Comparable;
 
 public class SimpleComparable implements Comparable {
     private String label;

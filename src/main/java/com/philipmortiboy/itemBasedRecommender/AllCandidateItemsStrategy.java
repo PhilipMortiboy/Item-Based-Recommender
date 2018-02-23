@@ -1,4 +1,4 @@
-package com.thestreet.itemBasedRecommender;
+package com.philipmortiboy.itemBasedRecommender;
 
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.impl.common.FastIDSet;

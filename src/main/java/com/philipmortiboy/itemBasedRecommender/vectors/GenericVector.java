@@ -1,11 +1,11 @@
-package com.thestreet.itemBasedRecommender.vectors;
+package com.philipmortiboy.itemBasedRecommender.vectors;
 
-import com.thestreet.itemBasedRecommender.Comparable;
-import com.thestreet.itemBasedRecommender.ItemModel;
-import com.thestreet.itemBasedRecommender.ItemModelHelper;
-import com.thestreet.itemBasedRecommender.comparison.Comparison;
-import com.thestreet.itemBasedRecommender.comparison.ComparisonService;
-import com.thestreet.itemBasedRecommender.weighting.Weighting;
+import com.philipmortiboy.itemBasedRecommender.Comparable;
+import com.philipmortiboy.itemBasedRecommender.ItemModel;
+import com.philipmortiboy.itemBasedRecommender.ItemModelHelper;
+import com.philipmortiboy.itemBasedRecommender.comparison.Comparison;
+import com.philipmortiboy.itemBasedRecommender.comparison.ComparisonService;
+import com.philipmortiboy.itemBasedRecommender.weighting.Weighting;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 

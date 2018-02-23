@@ -1,4 +1,4 @@
-package com.thestreet.itemBasedRecommender;
+package com.philipmortiboy.itemBasedRecommender;
 
 public interface Database<TItemModel extends ItemModel> {
     TItemModel getItem(long id);

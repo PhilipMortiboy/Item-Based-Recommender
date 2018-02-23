@@ -1,7 +1,7 @@
-package com.thestreet.itemBasedRecommender.builders;
+package com.philipmortiboy.itemBasedRecommender.builders;
 
-import com.thestreet.itemBasedRecommender.builders.models.SimpleComparable;
-import com.thestreet.itemBasedRecommender.builders.models.SimpleItem;
+import com.philipmortiboy.itemBasedRecommender.builders.models.SimpleComparable;
+import com.philipmortiboy.itemBasedRecommender.builders.models.SimpleItem;
 
 public class SimpleItemBuilder {
     private SimpleComparable[] comparableCollection;

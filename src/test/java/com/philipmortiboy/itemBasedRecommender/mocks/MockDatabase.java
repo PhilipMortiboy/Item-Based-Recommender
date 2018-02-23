@@ -1,8 +1,7 @@
-package com.thestreet.itemBasedRecommender.mocks;
+package com.philipmortiboy.itemBasedRecommender.mocks;
 
-import com.thestreet.itemBasedRecommender.Database;
-import com.thestreet.itemBasedRecommender.ItemModel;
-import com.thestreet.itemBasedRecommender.builders.models.TestItemModel;
+import com.philipmortiboy.itemBasedRecommender.Database;
+import com.philipmortiboy.itemBasedRecommender.builders.models.TestItemModel;
 
 import java.util.HashMap;
 import java.util.Map;

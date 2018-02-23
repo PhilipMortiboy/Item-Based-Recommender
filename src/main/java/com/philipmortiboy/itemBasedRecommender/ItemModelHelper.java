@@ -1,4 +1,4 @@
-package com.thestreet.itemBasedRecommender;
+package com.philipmortiboy.itemBasedRecommender;
 
 import java.lang.reflect.Array;
 

@@ -1,4 +1,4 @@
-package com.thestreet.itemBasedRecommender.weighting;
+package com.philipmortiboy.itemBasedRecommender.weighting;
 
 import java.util.Map;
 

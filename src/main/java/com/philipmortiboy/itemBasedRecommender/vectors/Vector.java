@@ -1,7 +1,7 @@
-package com.thestreet.itemBasedRecommender.vectors;
+package com.philipmortiboy.itemBasedRecommender.vectors;
 
-import com.thestreet.itemBasedRecommender.ItemModel;
-import com.thestreet.itemBasedRecommender.weighting.Weighting;
+import com.philipmortiboy.itemBasedRecommender.ItemModel;
+import com.philipmortiboy.itemBasedRecommender.weighting.Weighting;
 
 /**
  * Builds a vector from two ItemModels that can be used in a Euclidean distance calculation

@@ -1,4 +1,4 @@
-package com.thestreet.itemBasedRecommender.builders;
+package com.philipmortiboy.itemBasedRecommender.builders;
 
 import org.apache.mahout.cf.taste.impl.common.FastByIDMap;
 import org.apache.mahout.cf.taste.impl.model.GenericDataModel;

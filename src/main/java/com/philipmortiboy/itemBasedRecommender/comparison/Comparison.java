@@ -1,4 +1,4 @@
-package com.thestreet.itemBasedRecommender.comparison;
+package com.philipmortiboy.itemBasedRecommender.comparison;
 
 public class Comparison{
     private double scoreA = 0;

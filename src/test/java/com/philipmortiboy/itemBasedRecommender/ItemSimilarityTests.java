@@ -1,11 +1,10 @@
-package com.thestreet.itemBasedRecommender;
+package com.philipmortiboy.itemBasedRecommender;
 
-import com.thestreet.itemBasedRecommender.builders.GenericDataModelBuilder;
-import com.thestreet.itemBasedRecommender.builders.SimpleItemBuilder;
-import com.thestreet.itemBasedRecommender.builders.models.SimpleComparable;
-import com.thestreet.itemBasedRecommender.builders.models.TestItemModel;
-import com.thestreet.itemBasedRecommender.mocks.MockDatabase;
-import com.thestreet.itemBasedRecommender.weighting.UnWeighted;
+import com.philipmortiboy.itemBasedRecommender.builders.GenericDataModelBuilder;
+import com.philipmortiboy.itemBasedRecommender.builders.SimpleItemBuilder;
+import com.philipmortiboy.itemBasedRecommender.builders.models.SimpleComparable;
+import com.philipmortiboy.itemBasedRecommender.builders.models.TestItemModel;
+import com.philipmortiboy.itemBasedRecommender.mocks.MockDatabase;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

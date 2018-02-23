@@ -1,4 +1,4 @@
-package com.thestreet.itemBasedRecommender.builders.models;
+package com.philipmortiboy.itemBasedRecommender.builders.models;
 
 public class SimpleItem implements TestItemModel {
     private SimpleComparable[] comparableCollection;

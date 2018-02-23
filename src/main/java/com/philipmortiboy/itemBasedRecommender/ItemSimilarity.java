@@ -1,9 +1,9 @@
-package com.thestreet.itemBasedRecommender;
+package com.philipmortiboy.itemBasedRecommender;
 
-import com.thestreet.itemBasedRecommender.vectors.GenericVector;
-import com.thestreet.itemBasedRecommender.vectors.Vector;
-import com.thestreet.itemBasedRecommender.weighting.UnWeighted;
-import com.thestreet.itemBasedRecommender.weighting.Weighting;
+import com.philipmortiboy.itemBasedRecommender.vectors.GenericVector;
+import com.philipmortiboy.itemBasedRecommender.vectors.Vector;
+import com.philipmortiboy.itemBasedRecommender.weighting.UnWeighted;
+import com.philipmortiboy.itemBasedRecommender.weighting.Weighting;
 import org.apache.commons.math3.ml.distance.EuclideanDistance;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.impl.similarity.AbstractItemSimilarity;

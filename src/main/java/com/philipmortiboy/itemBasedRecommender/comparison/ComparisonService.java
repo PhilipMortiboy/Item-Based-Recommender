@@ -1,7 +1,6 @@
-package com.thestreet.itemBasedRecommender.comparison;
+package com.philipmortiboy.itemBasedRecommender.comparison;
 
-import com.thestreet.itemBasedRecommender.Comparable;
-import com.thestreet.itemBasedRecommender.comparison.Comparison;
+import com.philipmortiboy.itemBasedRecommender.Comparable;
 
 import java.util.Collection;
 import java.util.HashMap;
